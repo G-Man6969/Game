@@ -3,4 +3,23 @@
     <string name="txtHello">Hello Amigos</string>
     <string name="txtExclamation">The Game!</string>
     <string name="imgMain">Main Image</string>
+    <string name="button">Confirm</string>
+    <string-array name="characters">
+        <item></item>
+        <item>Gary Godspeed</item>
+        <item>Mooncake</item>
+        <item>Quinn Ergon</item>
+        <item>Little Cato</item>
+        <item>Avocato</item>
+        <item>KVN</item>
+        <item>Ash Graven</item>
+        <item>Fox</item>
+        <item>H.U.E</item>
+        <item>Clarence</item>
+        <item>Lord Commander</item>
+        <item>Nightfall</item>
+        <item>A.V.A</item>
+        <item>Tribore</item>
+        <item>Chuck</item>
+    </string-array>
 </resources>
