@@ -37,25 +37,17 @@ public class gameWindow extends AppCompatActivity {
     Random random;
     String name;
     String picPath;
-    int score;
-    int iterations;
-    SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_window);
 
-        preferences = getSharedPreferences("space", Context.MODE_PRIVATE);
-        editor = preferences.edit();
-
         spinner = findViewById(R.id.spinner);
         nameBox = findViewById(R.id.nameBox);
         quoteBox = findViewById(R.id.quoteBox);
         personFace = (ImageView)findViewById(R.id.imageView);
-        score = preferences.getInt("score", 0);
-        iterations = preferences.getInt("iterations", 0);
+
 
         RequestQueue ExampleRequestQueue = Volley.newRequestQueue(this);
         String firsturl = "https://finalspaceapi.com/api/v0/quote/";
@@ -103,31 +95,32 @@ public class gameWindow extends AppCompatActivity {
     }
 
     public void onClick(View view){
+        // Increase iterations
+        GameState.INSTANCE.setIterations(GameState.INSTANCE.getIterations() + 1);
+
         nameBox.setText(name);
         personFace.setVisibility(View.VISIBLE);
-        ++iterations;
-        if(spinner.getSelectedItem().toString() == name){
-            preferences.edit().remove("score").commit();
-            editor.putInt("score", score).commit();
+        if((spinner.getSelectedItem().toString()).equals(name)){
+            Toast.makeText(gameWindow.this, "CORRECT", Toast.LENGTH_LONG).show();
+            GameState.INSTANCE.setScore(GameState.INSTANCE.getScore() + 1);
         }
         Timer timer = new Timer();
         TimerTask task = new TimerTask(){
 
             @Override
             public void run() {
-                if(iterations >= 5){
-                    //TODO Display Results Screen
+                if(GameState.INSTANCE.getIterations() >= 5){
+                    Intent intent = new Intent(gameWindow.this, Results.class);
+                    startActivity(intent);
                 }
                 else{
-                    preferences.edit().remove("iterations").commit();
-                    editor.putInt("iterations", iterations).commit();
                     Intent intent = new Intent(gameWindow.this, gameWindow.class);
                     startActivity(intent);
                 }
             }
         };
 
-        timer.schedule(task, 5000);
+        timer.schedule(task, 1000);
     }
 }
 

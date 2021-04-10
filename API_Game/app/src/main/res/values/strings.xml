@@ -22,4 +22,6 @@
         <item>Tribore</item>
         <item>Chuck</item>
     </string-array>
+
+    <string name="scorePlaceholder">You scored %d/5!</string>
 </resources>
