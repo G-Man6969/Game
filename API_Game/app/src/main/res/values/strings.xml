@@ -4,6 +4,8 @@
     <string name="txtExclamation">The Game!</string>
     <string name="imgMain">Main Image</string>
     <string name="button">Confirm</string>
+    <string name="start">Start</string>
+    <string name="desc">In this game, you will be presented with a quote from a Lost In Space character. Your job is to match it to the right character</string>
     <string-array name="characters">
         <item></item>
         <item>Gary Godspeed</item>
